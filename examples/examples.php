@@ -1,14 +1,35 @@
 <?php
 
 /**
- * Example: Using AppStoreReviewsParser with JSON configuration
+ * Example: Using AppStoreReviewsParser
  */
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use AppStoreReviewsParser\AppStoreReviewsParser;
 
-// Example 1: Simple JSON configuration via app id
+// Example 1: Using method chaining (fluent interface)
+try {
+    $parser1 = new AppStoreReviewsParser();
+    $result1 = $parser1->setAppId('1476033780')
+        ->setCountry('us')
+        ->setPage(1)
+        ->setSortBy('mostrecent')
+        ->fetch();
+
+    if ($result1['success']) {
+        echo "\nExample 1 - Fetched " . count($result1['data']) . " reviews\n";
+        print_r($result1['data'][0] ?? 'No reviews found');
+    } else {
+        echo "Error: " . $result1['error'] . "\n";
+    }
+} catch (Exception $e) {
+    echo "Exception: " . $e->getMessage() . "\n";
+}
+echo "End example 1\n";
+
+
+// Example 2: Simple JSON configuration via app id
 $jsonConfig1 = '{
     "app_id": "1476033780",
     "country": "us",
@@ -29,10 +50,10 @@ try {
 } catch (Exception $e) {
     echo "Exception: " . $e->getMessage() . "\n";
 }
-echo "End example 1\n";
+echo "End example 2\n";
 
 
-// Example 2: Simple JSON configuration via app url
+// Example 3: Simple JSON configuration via app url
 $jsonConfig2 = '{
     "app_url": "https://apps.apple.com/us/app/youtube/id544007664",
     "parse_from_url": true,
@@ -54,16 +75,15 @@ try {
 } catch (Exception $e) {
     echo "Exception: " . $e->getMessage() . "\n";
 }
-echo "End example 2\n";
+echo "End example 3\n";
 
 
-// Example 3: Complete JSON configuration
+// Example 4: Complete JSON configuration
 $jsonConfig3 = '{
     "app_id": "1476033780",
     "country": "gb",
     "page": 2,
     "sort_by": "mosthelpful",
-    "format": "json",
     "timeout": 45,
     "user_agent": "My Custom User Agent 1.0"
 }';
@@ -81,6 +101,6 @@ try {
 } catch (Exception $e) {
     echo "Exception: " . $e->getMessage() . "\n";
 }
-echo "End example 3\n";
+echo "End example 4\n";
 
 

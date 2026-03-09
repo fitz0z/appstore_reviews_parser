@@ -41,6 +41,33 @@ Or add to your composer.json:
 
 ## Usage
 
+### Using Method Chaining (Fluent Interface)
+
+You can create a parser instance and configure it using method chaining:
+
+```php
+use AppStoreReviewsParser\AppStoreReviewsParser;
+
+// Create parser with method chaining
+$parser = new AppStoreReviewsParser();
+$result = $parser->setAppId('123456789')
+    ->setCountry('us')
+    ->setPage(1)
+    ->setSortBy('mostrecent')
+    ->setTimeout(30)
+    ->fetch();
+
+if ($result['success']) {
+    foreach ($result['data'] as $review) {
+        echo "Rating: {$review['rating']} - {$review['title']}\n";
+    }
+} else {
+    echo "Error: " . $result['error'];
+}
+```
+
+
+
 ### Using JSON Configuration
 
 You can create a parser instance by passing a JSON string with configuration:

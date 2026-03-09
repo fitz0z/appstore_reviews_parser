@@ -45,7 +45,6 @@ class AppStoreReviewsParser
         'country' => self::DEFAULT_COUNTRY,
         'page' => 1,
         'sort_by' => self::DEFAULT_SORT,
-        'format' => 'json',
         'timeout' => self::DEFAULT_TIMEOUT,
         'user_agent' => self::DEFAULT_USER_AGENT,
     ];
@@ -121,10 +120,6 @@ class AppStoreReviewsParser
 
         if (isset($config['sort_by'])) {
             $parser->setSortBy($config['sort_by']);
-        }
-
-        if (isset($config['format'])) {
-            $parser->setFormat($config['format']);
         }
 
         if (isset($config['timeout'])) {
@@ -238,26 +233,6 @@ class AppStoreReviewsParser
             $this->config['sort_by'] = $sort;
         } else {
             $this->lastError = "Invalid sort option. Must be 'mostrecent' or 'mosthelpful'";
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set response format
-     *
-     * @param string $format Response format ('json' or 'xml')
-     * @return self
-     */
-    public function setFormat(string $format): self
-    {
-        $validFormats = ['json', 'xml'];
-        $format = strtolower($format);
-
-        if (in_array($format, $validFormats)) {
-            $this->config['format'] = $format;
-        } else {
-            $this->lastError = "Invalid format. Must be 'json' or 'xml'";
         }
 
         return $this;
@@ -597,13 +572,13 @@ class AppStoreReviewsParser
     }
 
     /**
-     * Format response according to requested format
+     * Format response as JSON
      *
      * @param bool $success Whether the request was successful
      * @param array $data Reviews data
      * @param string|null $error Error message if any
      * @param array|null $meta Metadata
-     * @return array Formatted response
+     * @return array Formatted JSON response
      */
     private function formatResponse(
         bool $success,
