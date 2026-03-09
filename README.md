@@ -69,6 +69,7 @@ try {
     echo "Exception: " . $e->getMessage();
 }
 ```
+See `examples/examples.php` for more usage examples.
 
 ### Available Configuration Options
 
@@ -82,5 +83,58 @@ try {
 - `timeout`: Request timeout in seconds (default: 30)
 - `user_agent`: Custom user agent string
 
+### Response Format
 
-See `examples/json_config_example.php` for more usage examples.
+The parser returns a JSON object with the following structure:
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "1234567890",
+      "title": "Great app!",
+      "content": "I really love using this app. It helps me a lot.",
+      "rating": 5,
+      "author": "John Doe",
+      "version": "1.2.3",
+      "vote_count": 42,
+      "vote_sum": 168,
+      "country": "us",
+      "date": "2024-01-15T10:30:00+00:00"
+    }
+  ],
+  "meta": {
+    "app_id": "123456789",
+    "country": "us",
+    "page": 1,
+    "total_pages": 10,
+    "total_reviews": 50,
+    "sort_by": "mostrecent"
+  },
+  "error": null
+}
+```
+
+#### Response Fields
+
+- `success` (boolean): Indicates whether the request was successful
+- `data` (array): Array of review objects, each containing:
+  - `id` (string): Unique review identifier
+  - `title` (string): Review title
+  - `content` (string): Review text content
+  - `rating` (integer): Star rating (1-5)
+  - `author` (string): Name of the reviewer
+  - `version` (string): App version the review was written for
+  - `vote_count` (integer): Number of votes the review received
+  - `vote_sum` (integer): Sum of all vote scores
+  - `country` (string): Country code of the App Store
+  - `date` (string): ISO 8601 formatted date of the review
+- `meta` (object): Metadata about the request (only present on success):
+  - `app_id` (string): App Store ID
+  - `country` (string): Country code used
+  - `page` (integer): Current page number
+  - `total_pages` (integer): Total available pages (max 10)
+  - `total_reviews` (integer): Number of reviews returned
+  - `sort_by` (string): Sort order used
+- `error` (string|null): Error message if the request failed, null otherwise
