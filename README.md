@@ -106,7 +106,6 @@ See `examples/examples.php` for more usage examples.
 - `country`: Two-letter country code (default: "us")
 - `page`: Page number 1-10 (default: 1)
 - `sort_by`: "mostrecent" or "mosthelpful" (default: "mostrecent")
-- `format`: "json" or "xml" (default: "json")
 - `timeout`: Request timeout in seconds (default: 30)
 - `user_agent`: Custom user agent string
 
