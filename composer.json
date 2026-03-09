@@ -1,0 +1,23 @@
+{
+    "name": "appstore-reviews-parser/parser",
+    "description": "A standalone PHP library for parsing App Store reviews from iTunes RSS feed",
+    "type": "library",
+    "keywords": ["appstore", "itunes", "reviews", "parser", "rss"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "fitz0z",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AppStoreReviewsParser\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
