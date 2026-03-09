@@ -3,8 +3,8 @@
 A standalone PHP library for fetching and parsing App Store customer reviews from the iTunes RSS feed.
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/appstore-reviews-parser/parser)](https://packagist.org/packages/appstore-reviews-parser/parser)
-[![Total Downloads](https://img.shields.io/packagist/dt/appstore-reviews-parser/parser)](https://packagist.org/packages/appstore-reviews-parser/parser)
-[![License](https://img.shields.io/packagist/l/appstore-reviews-parser/parser)](https://packagist.org/packages/appstore-reviews-parser/parser)
+![Total Downloads](https://img.shields.io/packagist/dt/appstore-reviews-parser/parser)
+![GitHub License](https://img.shields.io/github/license/fitz0z/appstore_reviews_parser)
 
 ## Features
 
